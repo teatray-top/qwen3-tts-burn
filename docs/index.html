@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>qwen3-tts-burn samples</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1rem; color: #222; background: #fff; }
+  h1 { font-size: 1.4rem; }
+  section { margin: 2rem 0; }
+  audio { width: 100%; margin-top: .5rem; }
+  .line { color: #555; }
+  a { color: #8f3a2c; }
+</style>
+</head>
+<body>
+<h1>qwen3-tts-burn samples</h1>
+<p>Qwen3-TTS-12Hz-1.7B-Base on a Vulkan GPU, no CUDA. The reference clip is the only input besides the text.</p>
+
+<section>
+  <h2>English reference clip</h2>
+  <p class="line">7.6 s of one speaker. People's Speech (CC BY), picked for signal-to-noise ratio and plain content.</p>
+  <audio controls preload="none" src="https://raw.githubusercontent.com/teatray-top/qwen3-tts-burn/master/samples/reference_en.wav"></audio>
+</section>
+
+<section>
+  <h2>English</h2>
+  <p class="line">The README's opening, one paragraph at a time. Fed in spoken form ("Qwen three T T S", "W G P U", "safe tensors"), the way a reference transcript is written.</p>
+  <audio controls preload="none" src="https://raw.githubusercontent.com/teatray-top/qwen3-tts-burn/master/samples/sample_en.wav"></audio>
+</section>
+
+<section>
+  <h2>Korean</h2>
+  <p class="line">The same opening, translated, one paragraph at a time. Spoken form again: "큐원 쓰리 티티에스", "더블유지피유", "세이프텐서스".</p>
+  <p class="line">Reference: 7.7 s from KSS, a professional single-speaker corpus (CC BY-NC-SA — this clip and the sample derived from it are not under the repository's MIT licence; see samples/LICENSES.md).</p>
+  <audio controls preload="none" src="https://raw.githubusercontent.com/teatray-top/qwen3-tts-burn/master/samples/sample_ko.wav"></audio>
+  <audio controls preload="none" src="https://raw.githubusercontent.com/teatray-top/qwen3-tts-burn/master/samples/reference_ko_kss.wav"></audio>
+</section>
+
+<p><a href="https://github.com/teatray-top/qwen3-tts-burn">Repository</a> · <a href="https://github.com/teatray-top/qwen3-tts-burn/blob/master/BENCHMARKS.md">Benchmarks</a></p>
+</body>
+</html>

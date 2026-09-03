@@ -1,0 +1,20 @@
+60 rows
+t_gen = -0.142 s + 2.73 ms * R + 43.39 ms * N   (1024 bucket, 40 rows; median |err| 6.0%, max 64.0%)
+   per-frame cost 43.4 ms against an 80 ms frame -> 1.84x realtime asymptotically
+   bucket 448: apparent per-frame 43.2 ms over 10 rows, first use in the process included (autotune inside the timing)
+   bucket 2048: apparent per-frame 43.5 ms over 10 rows, first use in the process included (autotune inside the timing)
+t_dec = -3 ms + 0.239 ms * T   (T = pow2(R+N); 58 rows, median |err| 26.1%, max 207.2%)
+   T= 128: measured   34 ms (n=8)
+   T= 256: measured   73 ms (n=34)
+   T= 512: measured  148 ms (n=16)
+   excluded 2 decode rows above 0.5 s (first use of a decoder size: autotune)
+
+worked examples (in-context reference, app profile):
+   R= 25 N= 40 ( 3.2s audio):  1.69 s -> 1.89x realtime
+   R= 66 N= 44 ( 3.5s audio):  1.97 s -> 1.78x realtime
+   R= 95 N= 44 ( 3.5s audio):  2.08 s -> 1.69x realtime
+   R= 87 N= 59 ( 4.7s audio):  2.71 s -> 1.74x realtime
+   R= 95 N=100 ( 8.0s audio):  4.51 s -> 1.77x realtime
+   R= 95 N=200 (16.0s audio):  8.91 s -> 1.79x realtime
+   R=188 N= 60 ( 4.8s audio):  3.03 s -> 1.58x realtime
+lines of 3-16 s from a 95-frame (7.6 s) reference: 1.66x to 1.80x realtime

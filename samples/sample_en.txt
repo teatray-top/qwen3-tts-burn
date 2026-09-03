@@ -1,0 +1,3 @@
+A Vulkan port of Qwen three T T S for people without CUDA.
+It is built natively on burn's W G P U backend: any G P U with a Vulkan driver will run it, and the build needs nothing beyond cargo build. No CUDA toolkit, no Python, no native libraries.
+The model is reimplemented in Rust and loads the official safe tensors weights directly.

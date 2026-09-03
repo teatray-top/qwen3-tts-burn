@@ -1,0 +1,48 @@
+target/
+
+# Corpora fetched for local testing. KsponSpeech (AI Hub) cannot be
+# redistributed; KSS is CC BY-NC-SA and does not fit an MIT repository.
+samples/kor/
+samples/reference_kss*
+samples/reference_kspon*
+samples/sample_kss*
+samples/sample_kspon*
+
+# Scratch output from the probes and the comparison tools.
+samples/*_tail.wav
+samples/hd_*.wav
+samples/abbr_*.wav
+samples/probe_*.wav
+samples/tm_*.wav
+samples/v2_*.wav
+samples/fix_*.wav
+samples/end_*.wav
+samples/ctx_*.wav
+samples/cmp_*.wav
+samples/perf_*.wav
+samples/trail_*.wav
+samples/ending_*.wav
+samples/zh_*.wav
+samples/trimtest_*.wav
+samples/abl_*.wav
+samples/_*.wav
+samples/*.plain.wav
+samples/*.json
+*.out
+*.err
+*.log
+samples/*.pdf
+eval/out_*/
+eval/*.wav
+eval/*.log
+eval/*.json
+eval/mp4/
+!eval/results/
+# Raw measurement outputs that the tables in BENCHMARKS.md are built from.
+!eval/results/*.tsv
+!eval/results/*.json
+!eval/results/*.txt
+eval/refcands/
+eval/prio.wav
+eval/parity/*.log
+eval/parity/official_ids.json

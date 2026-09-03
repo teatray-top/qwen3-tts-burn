@@ -1,0 +1,32 @@
+[package]
+name = "qwen3-tts-burn"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Qwen3-TTS inference in pure Rust on burn/wgpu — runs on any Vulkan GPU, no CUDA toolchain, no Python, no ONNX runtime."
+repository = "https://github.com/teatray-top/qwen3-tts-burn"
+keywords = ["tts", "speech", "burn", "wgpu", "vulkan"]
+categories = ["multimedia::audio", "science"]
+exclude = ["testdata/*"]
+
+[dependencies]
+burn = { version = "0.21", features = ["wgpu", "vulkan"] }
+cubecl = { version = "0.10", features = ["wgpu"] }
+half = "2"
+safetensors = "0.4"
+memmap2 = "0.9"
+rand = "0.8"
+serde_json = "1"
+tokenizers = "0.22"
+rubato = "1.0"
+audioadapter-buffers = "2.0.0"
+
+# The GPU is the bottleneck, not codegen: lto roughly doubles build time and
+# changes almost nothing at runtime.
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 16
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_System_Threading", "Win32_Foundation"] }

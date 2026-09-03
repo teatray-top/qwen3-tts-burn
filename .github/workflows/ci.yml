@@ -1,0 +1,55 @@
+# GitHub-hosted runners have no GPU and no Vulkan driver. Everything here is
+# CPU-only: the build compiles the wgpu/Vulkan backend but never creates a
+# device, `cargo test` runs the unit tests in tests/ (synthetic signals, no
+# model), and tests/golden.rs stays #[ignore] because it needs the weights in
+# QTB_MODEL_DIR and a GPU. Run the golden test locally.
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+
+jobs:
+  build-and-test:
+    name: build + test (CPU only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
+      - name: Build library and examples
+        run: cargo build --locked --release --examples
+
+      - name: Unit tests
+        # The golden test is #[ignore]d and is not run here (no GPU, no model).
+        run: cargo test --locked --release
+
+  lint:
+    name: fmt + clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
+      - name: rustfmt
+        run: cargo fmt --all -- --check
+
+      - name: clippy
+        run: cargo clippy --locked --release --all-targets -- -D warnings
